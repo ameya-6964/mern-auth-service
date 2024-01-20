@@ -15,5 +15,7 @@ module.exports = {
   rules: {
     "no-console": "off",
     "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/require-await": "off",
   },
 };

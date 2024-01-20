@@ -1,5 +1,6 @@
 import app from "./app";
 import { Config } from "./config";
+import logger from "./config/logger";
 
 const startServer = () => {
   const PORT = Config.PORT;
@@ -8,9 +9,13 @@ const startServer = () => {
     app.listen(PORT, () => {
       console.log(`Server Started On Port ${PORT}`);
     });
-  } catch (error) {
-    console.error(error);
-    process.exit(1);
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      logger.error(err.message);
+      setTimeout(() => {
+        process.exit(1);
+      }, 1000);
+    }
   }
 };
 
